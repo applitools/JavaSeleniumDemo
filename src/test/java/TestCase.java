@@ -9,7 +9,7 @@ public class TestCase {
     WebDriver driver;
 
     @BeforeEach
-    public void beforeAll() {
+    public void beforeEach() {
         driver = WebDriverManager.chromedriver().create();
     }
     @Test
@@ -42,7 +42,7 @@ public class TestCase {
     }
 
     @AfterEach
-    public void afterAll() {
+    public void afterEach() {
         driver.close();
     }
 }
