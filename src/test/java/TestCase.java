@@ -12,8 +12,6 @@ public class TestCase {
     public void beforeAll() {
         driver = WebDriverManager.chromedriver().create();
     }
-
-
     @Test
     public void myTestCase() {
         try {
