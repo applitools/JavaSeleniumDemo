@@ -6,20 +6,34 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 
 public class TestCase {
-    WebDriver driver;
+    private static WebDriver driver;
     Eyes eyes;
+
+    @BeforeAll
+    public static void beforeAll() {
+        driver = WebDriverManager.chromedriver().create();
+    }
 
     @BeforeEach
     public void beforeEach(TestInfo testInfo) {
         eyes = new Eyes();
         eyes.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
-        driver = WebDriverManager.chromedriver().create();
         eyes.open(driver, "My First Tests", testInfo.getTestMethod().get().getName(), new RectangleSize(1000, 600));
     }
     @Test
-    public void myTestCase() {
+    public void applitoolsHelloWorld() {
         try {
             driver.get("https://applitools.com/helloworld/");
+            eyes.check(Target.window());
+        } catch(Exception e) {
+            Assertions.fail(e);
+        }
+    }
+
+    @Test
+    public void example() {
+        try {
+            driver.get("https://example.com");
             eyes.check(Target.window());
         } catch(Exception e) {
             Assertions.fail(e);
@@ -29,6 +43,11 @@ public class TestCase {
     @AfterEach
     public void afterEach() {
         eyes.closeAsync();
+    }
+
+    @AfterAll
+    public static void afterAll() {
         driver.close();
     }
+
 }
