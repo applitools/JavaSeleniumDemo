@@ -3,6 +3,7 @@ import com.applitools.eyes.EyesRunner;
 import com.applitools.eyes.RectangleSize;
 import com.applitools.eyes.TestResultsSummary;
 import com.applitools.eyes.selenium.ClassicRunner;
+import com.applitools.eyes.selenium.Configuration;
 import com.applitools.eyes.selenium.Eyes;
 import com.applitools.eyes.selenium.fluent.Target;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -13,6 +14,7 @@ public class TestCase {
     private static WebDriver driver;
     private static BatchInfo myTestBatch;
     private static EyesRunner testRunner;
+    private static Configuration suiteConfig;
     Eyes eyes;
 
     @BeforeAll
@@ -20,13 +22,16 @@ public class TestCase {
         driver = WebDriverManager.chromedriver().create();
         myTestBatch = new BatchInfo("Test Cases");
         testRunner = new ClassicRunner();
+
+        suiteConfig = new Configuration();
+        suiteConfig.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
+        suiteConfig.setBatch(myTestBatch);
     }
 
     @BeforeEach
     public void beforeEach(TestInfo testInfo) {
         eyes = new Eyes(testRunner);
-        eyes.setBatch(myTestBatch);
-        eyes.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
+        eyes.setConfiguration(suiteConfig);
         eyes.open(driver, "My First Tests", testInfo.getTestMethod().get().getName(), new RectangleSize(1000, 600));
     }
     @Test
