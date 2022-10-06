@@ -20,24 +20,17 @@ public class TestCase {
         eyes.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
         eyes.open(driver, "My First Tests", testInfo.getTestMethod().get().getName(), new RectangleSize(1000, 600));
     }
+
     @Test
     public void applitoolsHelloWorld() {
-        try {
-            driver.get("https://applitools.com/helloworld/");
-            eyes.check(Target.window());
-        } catch(Exception e) {
-            Assertions.fail(e);
-        }
+        driver.get("https://applitools.com/helloworld/");
+        eyes.check(Target.window());
     }
 
     @Test
-    public void example() {
-        try {
-            driver.get("https://example.com");
-            eyes.check(Target.window());
-        } catch(Exception e) {
-            Assertions.fail(e);
-        }
+    public void exampleTest() {
+        driver.get("https://example.com");
+        eyes.check(Target.window());
     }
 
     @AfterEach
