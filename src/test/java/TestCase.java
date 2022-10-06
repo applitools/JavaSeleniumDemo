@@ -16,14 +16,11 @@ public class TestCase {
         driver = WebDriverManager.chromedriver().create();
         eyes.open(driver, "My First Tests", testInfo.getTestMethod().get().getName(), new RectangleSize(1000, 600));
     }
+
     @Test
     public void myTestCase() {
-        try {
-            driver.get("https://applitools.com/helloworld/");
-            eyes.check(Target.window());
-        } catch(Exception e) {
-            Assertions.fail(e);
-        }
+        driver.get("https://applitools.com/helloworld/");
+        eyes.check(Target.window());
     }
 
     @AfterEach
