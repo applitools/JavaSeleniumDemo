@@ -48,7 +48,7 @@ public class TestCase {
     }
 
     @Test
-    public void applitoolsHomePageFull_ScrollMode() {
+    public void applitoolsHome_StitchModes() {
         driver.get("https://applitools.com/");
         eyes.check(Target.window().fully());
     }
