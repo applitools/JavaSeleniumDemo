@@ -45,9 +45,9 @@ public class TestCase {
     }
 
     @Test
-    public void applitoolsHomePageViewport() {
+    public void applitoolsHomePageFull() {
         driver.get("https://applitools.com/");
-        eyes.check(Target.window().fully(false));
+        eyes.check(Target.window());
     }
 
     @AfterEach
