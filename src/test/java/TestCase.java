@@ -31,10 +31,10 @@ public class TestCase {
         suiteConfig.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
         suiteConfig.setBatch(myTestBatch);
         suiteConfig.addBrowser(1000, 600, BrowserType.CHROME);
-        suiteConfig.addBrowser(1600, 1200, BrowserType.FIREFOX);
-        suiteConfig.addBrowser(1024, 768, BrowserType.SAFARI);
-        suiteConfig.addDeviceEmulation(DeviceName.Pixel_2, ScreenOrientation.PORTRAIT);
-        suiteConfig.addDeviceEmulation(DeviceName.Nexus_10, ScreenOrientation.LANDSCAPE);
+//        suiteConfig.addBrowser(1600, 1200, BrowserType.FIREFOX);
+//        suiteConfig.addBrowser(1024, 768, BrowserType.SAFARI);
+//        suiteConfig.addDeviceEmulation(DeviceName.Pixel_2, ScreenOrientation.PORTRAIT);
+//        suiteConfig.addDeviceEmulation(DeviceName.Nexus_10, ScreenOrientation.LANDSCAPE);
     }
 
     @BeforeEach
@@ -45,15 +45,9 @@ public class TestCase {
     }
 
     @Test
-    public void applitoolsHelloWorld() {
-        driver.get("https://applitools.com/helloworld/");
-        eyes.check(Target.window());
-    }
-
-    @Test
-    public void example() {
-        driver.get("https://example.com");
-        eyes.check(Target.window());
+    public void applitoolsHomePageViewport() {
+        driver.get("https://applitools.com/");
+        eyes.check(Target.window().fully(false));
     }
 
     @AfterEach
@@ -67,5 +61,4 @@ public class TestCase {
         TestResultsSummary results = testRunner.getAllTestResults();
         System.out.println(results);
     }
-
 }
