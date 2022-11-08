@@ -3,6 +3,7 @@ import com.applitools.eyes.EyesRunner;
 import com.applitools.eyes.RectangleSize;
 import com.applitools.eyes.TestResultsSummary;
 import com.applitools.eyes.selenium.BrowserType;
+import com.applitools.eyes.selenium.ClassicRunner;
 import com.applitools.eyes.selenium.Configuration;
 import com.applitools.eyes.selenium.Eyes;
 import com.applitools.eyes.selenium.fluent.Target;
@@ -11,6 +12,7 @@ import com.applitools.eyes.visualgrid.model.ScreenOrientation;
 import com.applitools.eyes.visualgrid.services.RunnerOptions;
 import com.applitools.eyes.visualgrid.services.VisualGridRunner;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.aopalliance.reflect.Class;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 
@@ -25,12 +27,13 @@ public class TestCase {
     public static void beforeAll() {
         driver = WebDriverManager.chromedriver().create();
         myTestBatch = new BatchInfo("Test Cases");
-        testRunner = new VisualGridRunner(new RunnerOptions().testConcurrency(5));
+//        testRunner = new VisualGridRunner(new RunnerOptions().testConcurrency(5));
+        testRunner = new ClassicRunner();
 
         suiteConfig = new Configuration();
         suiteConfig.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
         suiteConfig.setBatch(myTestBatch);
-        suiteConfig.addBrowser(1000, 600, BrowserType.CHROME);
+//        suiteConfig.addBrowser(1000, 600, BrowserType.CHROME);
 //        suiteConfig.addBrowser(1600, 1200, BrowserType.FIREFOX);
 //        suiteConfig.addBrowser(1024, 768, BrowserType.SAFARI);
 //        suiteConfig.addDeviceEmulation(DeviceName.Pixel_2, ScreenOrientation.PORTRAIT);
@@ -45,9 +48,9 @@ public class TestCase {
     }
 
     @Test
-    public void applitoolsHomePageFull() {
+    public void applitoolsHomePageFull_ScrollMode() {
         driver.get("https://applitools.com/");
-        eyes.check(Target.window());
+        eyes.check(Target.window().fully());
     }
 
     @AfterEach
