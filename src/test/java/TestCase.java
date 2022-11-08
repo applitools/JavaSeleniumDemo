@@ -31,7 +31,6 @@ public class TestCase {
         suiteConfig = new Configuration();
         suiteConfig.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
         suiteConfig.setBatch(myTestBatch);
-        suiteConfig.setStitchMode(StitchMode.CSS);
         suiteConfig.addBrowser(1000, 600, BrowserType.CHROME);
 //        suiteConfig.addBrowser(1600, 1200, BrowserType.FIREFOX);
 //        suiteConfig.addBrowser(1024, 768, BrowserType.SAFARI);
