@@ -49,7 +49,7 @@ public class TestCase {
     @Test
     public void regionScreenshot() {
         driver.get("https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll");
-        eyes.check(Target.region(By.cssSelector("#sidebar-quicklinks")));
+        eyes.check(Target.region(By.cssSelector("#sidebar-quicklinks")).fully());
     }
 
     @AfterEach
