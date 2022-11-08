@@ -11,7 +11,9 @@ import com.applitools.eyes.visualgrid.services.VisualGridRunner;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.aopalliance.reflect.Class;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class TestCase {
     private static WebDriver driver;
@@ -24,14 +26,13 @@ public class TestCase {
     public static void beforeAll() {
         driver = WebDriverManager.chromedriver().create();
         myTestBatch = new BatchInfo("Test Cases");
-//        testRunner = new VisualGridRunner(new RunnerOptions().testConcurrency(5));
-        testRunner = new ClassicRunner();
+        testRunner = new VisualGridRunner(new RunnerOptions().testConcurrency(5));
 
         suiteConfig = new Configuration();
         suiteConfig.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
         suiteConfig.setBatch(myTestBatch);
         suiteConfig.setStitchMode(StitchMode.CSS);
-//        suiteConfig.addBrowser(1000, 600, BrowserType.CHROME);
+        suiteConfig.addBrowser(1000, 600, BrowserType.CHROME);
 //        suiteConfig.addBrowser(1600, 1200, BrowserType.FIREFOX);
 //        suiteConfig.addBrowser(1024, 768, BrowserType.SAFARI);
 //        suiteConfig.addDeviceEmulation(DeviceName.Pixel_2, ScreenOrientation.PORTRAIT);
@@ -46,9 +47,9 @@ public class TestCase {
     }
 
     @Test
-    public void applitoolsHomePageFull_ScrollMode() {
-        driver.get("https://applitools.com/");
-        eyes.check(Target.window().fully());
+    public void regionScreenshot() {
+        driver.get("https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll");
+        eyes.check(Target.region(By.cssSelector("#sidebar-quicklinks")));
     }
 
     @AfterEach
