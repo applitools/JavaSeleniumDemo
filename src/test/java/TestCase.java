@@ -47,9 +47,9 @@ public class TestCase {
     }
 
     @Test
-    public void regionScreenshot() {
-        driver.get("https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll");
-        eyes.check(Target.region(By.cssSelector("#sidebar-quicklinks")).fully());
+    public void matchLevelTest() {
+        driver.get("https://applitools.com/helloworld/?diff2");
+        eyes.check(Target.window());
     }
 
     @AfterEach
