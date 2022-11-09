@@ -29,7 +29,6 @@ public class TestCase {
         suiteConfig.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
         suiteConfig.setBatch(myTestBatch);
         suiteConfig.setStitchMode(StitchMode.CSS);
-        suiteConfig.setMatchLevel(MatchLevel.IGNORE_COLORS);
         suiteConfig.addBrowser(1000, 600, BrowserType.CHROME);
 //        suiteConfig.addBrowser(1600, 1200, BrowserType.FIREFOX);
 //        suiteConfig.addBrowser(1024, 768, BrowserType.SAFARI);
@@ -47,7 +46,7 @@ public class TestCase {
     @Test
     public void matchLevelTest() {
         driver.get("https://applitools.com/helloworld/?diff2");
-        eyes.check(Target.window());
+        eyes.check(Target.window().layout(By.cssSelector("div.section:nth-child(2) > p:nth-child(4)")).content(By.cssSelector("div.section:nth-child(1)")));
     }
 
     @AfterEach
