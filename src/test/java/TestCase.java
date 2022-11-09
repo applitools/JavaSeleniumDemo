@@ -23,6 +23,7 @@ public class TestCase {
     public static void beforeAll() {
         driver = WebDriverManager.chromedriver().create();
         myTestBatch = new BatchInfo("Test Cases");
+        myTestBatch.setSequenceName("My Batch Sequence");
         testRunner = new VisualGridRunner(new RunnerOptions().testConcurrency(5));
 
         suiteConfig = new Configuration();
