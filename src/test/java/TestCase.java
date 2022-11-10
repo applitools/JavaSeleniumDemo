@@ -24,6 +24,7 @@ public class TestCase {
         driver = WebDriverManager.chromedriver().create();
         myTestBatch = new BatchInfo("Test Cases");
         myTestBatch.setSequenceName("My Batch Sequence");
+        myTestBatch.setNotifyOnCompletion(true);
         testRunner = new VisualGridRunner(new RunnerOptions().testConcurrency(5));
 
         suiteConfig = new Configuration();
