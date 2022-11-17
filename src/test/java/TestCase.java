@@ -29,7 +29,7 @@ public class TestCase {
         suiteConfig.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
         suiteConfig.setBatch(myTestBatch);
         suiteConfig.setStitchMode(StitchMode.CSS);
-        suiteConfig.setBranchName("myFirstBranch");
+        suiteConfig.setBranchName("featureBranch1");
         suiteConfig.addBrowser(1000, 600, BrowserType.CHROME);
 //        suiteConfig.addBrowser(1600, 1200, BrowserType.FIREFOX);
 //        suiteConfig.addBrowser(1024, 768, BrowserType.SAFARI);
@@ -45,8 +45,8 @@ public class TestCase {
     }
 
     @Test
-    public void branchesTest() {
-        driver.get("https://applitools.com/helloworld?diff2");
+    public void branchesTest_Two() {
+        driver.get("https://applitools.com/helloworld");
         eyes.check(Target.window());
     }
 
