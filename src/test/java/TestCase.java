@@ -23,8 +23,6 @@ public class TestCase {
     public static void beforeAll() {
         driver = WebDriverManager.chromedriver().create();
         myTestBatch = new BatchInfo("Test Cases");
-        myTestBatch.setSequenceName("My Batch Sequence");
-        myTestBatch.setNotifyOnCompletion(true);
         testRunner = new VisualGridRunner(new RunnerOptions().testConcurrency(5));
 
         suiteConfig = new Configuration();
@@ -46,9 +44,9 @@ public class TestCase {
     }
 
     @Test
-    public void matchLevelTest() {
-        driver.get("https://applitools.com/helloworld/?diff2");
-        eyes.check(Target.window().layout(By.cssSelector("div.section:nth-child(2) > p:nth-child(4)")).content(By.cssSelector("div.section:nth-child(1)")));
+    public void branchesTest() {
+        driver.get("https://applitools.com/helloworld");
+        eyes.check(Target.window());
     }
 
     @AfterEach
