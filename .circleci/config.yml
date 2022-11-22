@@ -34,7 +34,9 @@ jobs:
       # Then run your tests!
 #      - run:
 #          name: Test
-#          command: mvn test
+#          command: mvn tesrt
+  run_test:
+    - maven/test
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -43,6 +45,3 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build
-  run_test:
-    jobs:
-      - maven/test
