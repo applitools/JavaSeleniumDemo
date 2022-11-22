@@ -23,6 +23,10 @@ jobs:
       # Checkout the code as the first step.
       - checkout
       - run:
+          command: apt install maven
+      - run:
+          command: mvn --version
+      - run:
           command: mvn clean test
       # Use mvn clean and package as the standard maven build phase
 #      - run: |
