@@ -10,8 +10,9 @@ jobs:
     steps:
       - browser-tools/install-chrome
       - checkout
-      - run:
-          command: mvn clean test
+      - run |
+          export APPLITOOLS_BATCH_ID=$(echo $CIRCLE_SHA1)
+          mvn clean test
 
 workflows:
   build-and-test:
