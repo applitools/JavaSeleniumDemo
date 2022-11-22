@@ -11,6 +11,7 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class TestCase {
     private static WebDriver driver;
@@ -21,7 +22,9 @@ public class TestCase {
 
     @BeforeAll
     public static void beforeAll() {
-        driver = WebDriverManager.chromedriver().create();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless");
+        driver = WebDriverManager.chromedriver().capabilities(chromeOptions).create();
         myTestBatch = new BatchInfo("Test Cases");
         testRunner = new VisualGridRunner(new RunnerOptions().testConcurrency(5));
 
