@@ -23,6 +23,7 @@ jobs:
       - browser-tools/install-chrome
       # Checkout the code as the first step.
       - checkout
+      - maven/test
       # Use mvn clean and package as the standard maven build phase
 #      - run: |
 #          google-chrome --version
@@ -35,8 +36,6 @@ jobs:
 #      - run:
 #          name: Test
 #          command: mvn tesrt
-  run_test:
-    - maven/test
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
