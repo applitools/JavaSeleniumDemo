@@ -23,7 +23,6 @@ jobs:
       - browser-tools/install-chrome
       # Checkout the code as the first step.
       - checkout
-      - maven/test
       # Use mvn clean and package as the standard maven build phase
 #      - run: |
 #          google-chrome --version
@@ -44,3 +43,6 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build
+      - maven/test:
+          requires:
+            build
