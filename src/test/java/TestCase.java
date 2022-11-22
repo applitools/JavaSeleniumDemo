@@ -47,7 +47,7 @@ public class TestCase {
     }
 
     @Test
-    public void baselineBranchNameTest() {
+    public void githubIntegration() {
         driver.get("https://applitools.com/helloworld?diff2");
         eyes.check(Target.window());
     }
