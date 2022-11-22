@@ -23,7 +23,6 @@ public class TestCase {
     @BeforeAll
     public static void beforeAll() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        System.out.println("test");
         chromeOptions.addArguments("--headless");
         driver = WebDriverManager.chromedriver().capabilities(chromeOptions).create();
         myTestBatch = new BatchInfo("Test Cases");
