@@ -50,7 +50,7 @@ public class TestCase {
 
     @Test
     public void GithubIntegrationTest() {
-        driver.get("https://applitools.com/helloworld/?diff2");
+        driver.get("https://applitools.com/helloworld");
         eyes.check(Target.window());
     }
 
