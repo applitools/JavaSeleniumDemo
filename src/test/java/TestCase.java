@@ -54,12 +54,6 @@ public class TestCase {
         eyes.check(Target.window());
     }
 
-    @Test
-    public void example() {
-        driver.get("https://example.com");
-        eyes.check(Target.window());
-    }
-
     @AfterEach
     public void afterEach() {
         eyes.closeAsync();
