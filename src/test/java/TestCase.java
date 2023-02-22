@@ -46,9 +46,9 @@ public class TestCase {
     }
 
     @Test
-    public void responsiveDesign() {
+    public void lazyLoad() {
         driver.get("https://applitools.com");
-        eyes.check(Target.window().layoutBreakpoints(true));
+        eyes.check(Target.window().lazyLoad());
     }
 
     @AfterEach
