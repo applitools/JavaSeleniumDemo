@@ -9,6 +9,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.aopalliance.reflect.Class;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -46,9 +47,11 @@ public class TestCase {
     }
 
     @Test
-    public void lazyLoad() {
-        driver.get("https://applitools.com");
-        eyes.check(Target.window().lazyLoad());
+    public void ignoreDisplacements() {
+        driver.get("https://applitools.com/helloworld");
+        JavascriptExecutor execDriver = (JavascriptExecutor) driver;
+        execDriver.executeScript("document.querySelector('div.fancy:nth-child(1)').style.borderBottom = '5px solid gray';");
+        eyes.check(Target.window().ignoreDisplacements(true));
     }
 
     @AfterEach
