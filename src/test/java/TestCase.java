@@ -14,6 +14,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.Random;
+
 public class TestCase {
     private static WebDriver driver;
     private static BatchInfo myTestBatch;
@@ -47,11 +49,10 @@ public class TestCase {
     }
 
     @Test
-    public void ignoreDisplacements() {
+    public void baselineVariations() {
         driver.get("https://applitools.com/helloworld");
-        JavascriptExecutor execDriver = (JavascriptExecutor) driver;
-        execDriver.executeScript("document.querySelector('div.fancy:nth-child(1)').style.borderBottom = '5px solid gray';");
-        eyes.check(Target.window().ignoreDisplacements(true));
+        simulatePageVariations((JavascriptExecutor) driver);
+        eyes.check(Target.window());
     }
 
     @AfterEach
@@ -64,5 +65,17 @@ public class TestCase {
         driver.close();
         TestResultsSummary results = testRunner.getAllTestResults();
         System.out.println(results);
+    }
+
+    public static void simulatePageVariations(JavascriptExecutor jsExec) {
+        Random rand = new Random();
+        int result = rand.nextInt(3);
+        System.out.println(result);
+        if (result == 1) {
+            // Left Justify the text
+            jsExec.executeScript("document.querySelector('.demo-page').setAttribute('class', 'demo-page'); document.querySelector('.demo-page').style.textAlign = 'left'");
+        } else if (result == 2) {
+            jsExec.executeScript("document.querySelector('div.section:nth-child(1)').style.backgroundColor = 'lightgray'");
+        }
     }
 }
