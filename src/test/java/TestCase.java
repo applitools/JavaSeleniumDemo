@@ -29,6 +29,7 @@ public class TestCase {
         chromeOptions.addArguments("--headless");
         driver = WebDriverManager.chromedriver().capabilities(chromeOptions).create();
         myTestBatch = new BatchInfo("Test Cases");
+        myTestBatch.addProperty("Batch Property", "On the Batch");
         testRunner = new VisualGridRunner(new RunnerOptions().testConcurrency(5));
         suiteConfig = new Configuration();
         suiteConfig.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
@@ -49,19 +50,8 @@ public class TestCase {
     }
 
     @Test
-    public void autoMaintenance() {
+    public void customProperty() {
         driver.get("https://applitools.com/helloworld");
-
-        JavascriptExecutor jsExec = (JavascriptExecutor) driver;
-        jsExec.executeScript("document.querySelector('div.fancy:nth-child(1)').style.backgroundColor = 'lightGray';");
-
-        eyes.check(Target.window());
-
-        WebElement button = driver.findElement(By.cssSelector("div.section:nth-child(3) > button:nth-child(1)"));
-        button.click();
-        eyes.check(Target.window());
-
-        button.click();
         eyes.check(Target.window());
     }
 
