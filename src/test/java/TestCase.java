@@ -40,6 +40,7 @@ public class TestCase {
         suiteConfig.addBrowser(1200, 800, BrowserType.SAFARI);
         suiteConfig.addDeviceEmulation(DeviceName.iPad, ScreenOrientation.LANDSCAPE);
         suiteConfig.addDeviceEmulation(DeviceName.iPhone_X, ScreenOrientation.PORTRAIT);
+        suiteConfig.setAccessibilityValidation(new AccessibilitySettings(AccessibilityLevel.AAA, AccessibilityGuidelinesVersion.WCAG_2_1));
     }
 
     @BeforeEach
@@ -50,9 +51,14 @@ public class TestCase {
     }
 
     @Test
-    public void customProperty() {
-        driver.get("https://applitools.com/helloworld");
-        eyes.check(Target.window());
+    public void accessibility() {
+        driver.get("https://applitools.com/helloworld/");
+        eyes.check(
+            Target
+            .window()
+            .accessibility(By.cssSelector("div.fancy:nth-child(1)"), AccessibilityRegionType.GraphicalObject)
+            .setAccessibilityValidation(new AccessibilitySettings(AccessibilityLevel.AAA, AccessibilityGuidelinesVersion.WCAG_2_1))
+        );
     }
 
     @AfterEach
