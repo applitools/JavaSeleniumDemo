@@ -49,9 +49,19 @@ public class TestCase {
     }
 
     @Test
-    public void baselineVariations() {
+    public void autoMaintenance() {
         driver.get("https://applitools.com/helloworld");
-        simulatePageVariations((JavascriptExecutor) driver);
+
+        JavascriptExecutor jsExec = (JavascriptExecutor) driver;
+        jsExec.executeScript("document.querySelector('div.fancy:nth-child(1)').style.backgroundColor = 'lightGray';");
+
+        eyes.check(Target.window());
+
+        WebElement button = driver.findElement(By.cssSelector("div.section:nth-child(3) > button:nth-child(1)"));
+        button.click();
+        eyes.check(Target.window());
+
+        button.click();
         eyes.check(Target.window());
     }
 
@@ -65,17 +75,5 @@ public class TestCase {
         driver.close();
         TestResultsSummary results = testRunner.getAllTestResults();
         System.out.println(results);
-    }
-
-    public static void simulatePageVariations(JavascriptExecutor jsExec) {
-        Random rand = new Random();
-        int result = rand.nextInt(3);
-        System.out.println(result);
-        if (result == 1) {
-            // Left Justify the text
-            jsExec.executeScript("document.querySelector('.demo-page').setAttribute('class', 'demo-page'); document.querySelector('.demo-page').style.textAlign = 'left'");
-        } else if (result == 2) {
-            jsExec.executeScript("document.querySelector('div.section:nth-child(1)').style.backgroundColor = 'lightgray'");
-        }
     }
 }
