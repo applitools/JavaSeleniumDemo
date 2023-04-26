@@ -39,12 +39,6 @@
             <version>5.22.0</version>
             <scope>test</scope>
         </dependency>
-         </dependencies>
-         <dependency>
-    <groupId>com.applitools</groupId>
-    <artifactId>eyes-selenium-java5</artifactId>
-    <version>5.22.0</version>
-    <scope>test</scope>
-         </dependency>
+       
 
 </project>
